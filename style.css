@@ -1,0 +1,186 @@
+/* --- CONFIGURAÇÕES GLOBAIS E VARIÁVEIS --- */
+
+/* :root é onde definimos nossas variáveis globais (cores, fontes, etc.) */
+:root {
+    --cor-principal: #8A2BE2;        /* Roxo vibrante */
+    --cor-principal-hover: #6A0DAD;   /* Roxo mais escuro para efeitos */
+    --cor-fundo-escuro: #121212;
+    --cor-fundo-cards: #1E1E1E;
+    --cor-texto-principal: #E0E0E0;
+    --cor-texto-secundario: #A0A0A0; /* Para infos como data e autor */
+    --fonte-padrao: 'Roboto', sans-serif;
+}
+
+/* Reset básico e configuração do box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais do corpo da página */
+body {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-padrao); /* Aplicando nossa fonte padrão */
+    line-height: 1.6; /* Melhora a legibilidade */
+}
+
+/* --- HEADER E NAVEGAÇÃO --- */
+
+.header-fixo {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--cor-fundo-cards);
+    padding: 15px 5%; /* Usar % para padding lateral deixa mais responsivo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 3px solid var(--cor-principal);
+}
+
+/* Estilizando a nossa logo */
+.logo a {
+    font-size: 1.8rem;
+    color: var(--cor-principal);
+    text-decoration: none;
+    font-weight: 700; /* Peso da fonte "bold" */
+}
+
+.header-fixo nav a {
+    color: var(--cor-texto-principal);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 700;
+    transition: color 0.3s ease; /* Transição suave na cor do texto */
+}
+
+.header-fixo nav a:hover {
+    color: var(--cor-principal); /* Ao passar o mouse, o link fica roxo */
+}
+
+/* --- ESTRUTURA DAS SEÇÕES --- */
+
+.secao {
+    padding: 100px 5% 40px; /* Mais espaço no topo para o header fixo e padding lateral responsivo */
+}
+
+.secao h2 {
+    font-size: 2.2rem;
+    color: var(--cor-principal);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* --- GRIDS DE CONTEÚDO (Notícias, Eventos, Cursos) --- */
+
+/* Um único estilo para todos os grids */
+.noticias-grid, .eventos-grid, .cursos-grid {
+    display: grid;
+    /* Isso cria colunas flexíveis. Em telas grandes, cabem mais colunas. Em telas pequenas, elas quebram para uma única coluna. */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* --- ESTILO DOS CARDS (Notícia, Evento, Curso) --- */
+
+/* Um estilo base para todos os cards */
+.noticia, .evento, .curso {
+    background-color: var(--cor-fundo-cards);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Usando flexbox para alinhar o conteúdo interno */
+    flex-direction: column; /* Itens empilhados verticalmente */
+    overflow: hidden; /* Garante que a imagem não "vaze" do border-radius */
+    border: 1px solid #2c2c2c; /* Borda sutil para definir melhor o card */
+}
+
+.noticia:hover, .evento:hover, .curso:hover {
+    transform: translateY(-8px); /* Efeito de "levantar" o card mais pronunciado */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Conteúdo interno do card (para espaçamento) */
+.noticia-conteudo, .evento-conteudo, .curso-conteudo {
+    padding: 20px;
+    flex-grow: 1; /* Faz esta área crescer para ocupar o espaço disponível */
+    display: flex;
+    flex-direction: column;
+}
+
+.noticia img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Garante que a imagem preencha a área sem distorcer */
+}
+
+.noticia h3, .evento h3, .curso h3 {
+    font-size: 1.4rem;
+    color: var(--cor-principal);
+    margin-bottom: 10px;
+}
+
+.noticia p, .evento p, .curso p {
+    font-size: 1rem;
+    color: var(--cor-texto-principal);
+    margin-bottom: 15px;
+    flex-grow: 1; /* Faz o parágrafo crescer, alinhando os botões "Saiba Mais" na base do card */
+}
+
+/* Estilo para as informações de autor/data */
+.meta-info, .evento-info {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 15px;
+}
+
+/* Estilo dos links/botões "Saiba Mais" */
+.noticia a, .evento a, .curso a {
+    display: block;
+    text-align: center;
+    background-color: var(--cor-principal);
+    color: #FFFFFF; /* Texto branco para melhor contraste */
+    padding: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    margin-top: auto; /* Empurra o botão para a parte de baixo do card */
+    transition: background-color 0.3s ease;
+}
+
+.noticia a:hover, .evento a:hover, .curso a:hover {
+    background-color: var(--cor-principal-hover);
+}
+
+/* --- RODAPÉ --- */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--cor-fundo-cards);
+    border-top: 3px solid var(--cor-principal);
+    margin-top: 40px;
+}
+
+.social-links {
+    margin-bottom: 15px;
+}
+
+footer a {
+    color: var(--cor-principal);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 700;
+    transition: text-decoration 0.3s ease;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
